@@ -1,32 +1,17 @@
-import React from 'react'
-import Logout from '../components/auth/Logout'
-import { useAuthStore } from '../stores/useAuthStore'
-import api from '@/lib/axios'
-import { toast } from 'sonner'
+import ChatWindowLayout from "@/components/chat/ChatWindowLayout";
+import { AppSidebar } from "@/components/sidebar/app-sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 const ChatAppPage = () => {
-  // const { user } = useAuthStore() //theo dõi toàn bộ state, 1 commponent thay đổi thì toàn bộ bị render => bất tiện
-
-  const user = useAuthStore((state) => state.user) //chỉ theo dõi trường user trong stores
-
-  const handleOnclick = async () => {
-    try {
-      await api.get("/users/test", { withCredentials: true })
-      toast.success("Test thành công")
-    } catch (error) {
-      toast.error("Test thất bại")
-      console.log(error)
-    }
-  }
-
   return (
-    <div>
-      <p>{user?.username}</p>
-      <Logout />
+    <SidebarProvider>
+      <AppSidebar />
 
-      <button onClick={handleOnclick}>Test</button>
-    </div>
-  )
-}
+      <div className="flex h-screen w-full p-2">
+        <ChatWindowLayout />
+      </div>
+    </SidebarProvider>
+  );
+};
 
-export default ChatAppPage
+export default ChatAppPage;

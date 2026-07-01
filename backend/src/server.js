@@ -11,7 +11,7 @@ import messageRoute from "./routes/messageRoute.js";
 import conversationRoute from "./routes/conversationRoute.js";
 import swaggerUi from "swagger-ui-express";
 import fs from "fs"; //dọc dữ liệu Json
-
+import { v2 as cloudinary } from "cloudinary";
 
 // Load environment variables from .env file
 dotenv.config();
